@@ -1,0 +1,20 @@
+{
+  "name": "interactive-3d-graphics-colors-and-materials-problem-set",
+  "version": "1.0.0",
+  "description": "This is a problem set of Color and Materials, knowledge based on the lesson of the same name in the Interactive 3D Graphics course on Udacity.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel .\\src\\index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.10.1",
+    "vite": "^4.5.0"
+  },
+  "dependencies": {
+    "three": "^0.157.0"
+  }
+}
