@@ -7,8 +7,3 @@ Our team:
 1. Phung Quoc Tuan - ID: 19127616
 2. Nguyen Anh Tuan - ID: 19127614
 3. Pham Quang Huy - ID: 20126016
-
-INSTRUCT:
-1. Make sure you have Node.js installed.
-2. Clone the project and run the command **`npm install`** in your command prompt/terminal.
-3. Use **`npm run dev`** to run the code.
