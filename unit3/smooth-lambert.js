@@ -1,6 +1,6 @@
 "use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
-// Diffuse material exercise
+// Smooth shading exercise: change program to make sphere look smooth
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, window, document, $*/
 
@@ -13,8 +13,8 @@ function init() {
 	var canvasWidth = 846;
 	var canvasHeight = 494;
 	// For grading the window is fixed in size; here's general code:
-	//var canvasWidth = window.innerWidth;
-	//var canvasHeight = window.innerHeight;
+	var canvasWidth = window.innerWidth;
+	var canvasHeight = window.innerHeight;
 	var canvasRatio = canvasWidth / canvasHeight;
 
 	// CAMERA
@@ -34,6 +34,9 @@ function init() {
 	renderer.setSize( canvasWidth, canvasHeight );
 	renderer.setClearColorHex( 0xAAAAAA, 1.0 );
 
+	var container = document.getElementById('container');
+	container.appendChild( renderer.domElement );
+
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
 
@@ -44,9 +47,11 @@ function init() {
 }
 
 function createBall() {
-	// Do not change the color itself, change the material and use the ambient and diffuse components.
-	var material = new THREE.MeshBasicMaterial( { color: 0x80FC66, shading: THREE.FlatShading } );
-	var sphere = new THREE.Mesh( new THREE.SphereGeometry( 400, 64, 32 ), material );
+	var material = new THREE.MeshLambertMaterial( { color: 0x80FC66, shading: THREE.FlatShading } );
+	var ka = 0.4;
+	material.ambient.setRGB( material.color.r * ka, material.color.g * ka, material.color.b * ka );
+	var sphere = new THREE.Mesh(
+		new THREE.SphereGeometry( 400, 64, 32 ), material );
 	return sphere;
 }
 
@@ -61,9 +66,9 @@ function fillScene() {
 	var ball = createBall();
 	scene.add( ball );
 
-	//Coordinates.drawGround({size:1000});
-	//Coordinates.drawGrid({size:1000,scale:0.01});
-	//Coordinates.drawAllAxes({axisLength:500,axisRadius:1,axisTess:4});
+	// Coordinates.drawGround({size:1000});
+	// Coordinates.drawGrid({size:1000,scale:0.01});
+	// Coordinates.drawAllAxes({axisLength:500,axisRadius:1,axisTess:4});
 }
 
 function addToDOM() {
@@ -76,8 +81,10 @@ function addToDOM() {
 }
 
 function animate() {
+
 	window.requestAnimationFrame( animate );
 	render();
+
 }
 
 function render() {
